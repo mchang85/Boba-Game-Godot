@@ -1,0 +1,140 @@
+[gd_scene load_steps=7 format=3 uid="uid://brvjn458o17ei"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_5fcbe"]
+[ext_resource type="PackedScene" uid="uid://do0b21ujlf0ym" path="res://scenes/cursor.tscn" id="2_bwl3b"]
+[ext_resource type="Texture2D" uid="uid://cnxs46b6sroa6" path="res://assets/ui/button_rectangle_depth_gradient.png" id="3_a7fvk"]
+[ext_resource type="Texture2D" uid="uid://c1pcrbn8my8jl" path="res://assets/ui/button_rectangle_gradient.png" id="4_6qn64"]
+
+[sub_resource type="SystemFont" id="SystemFont_ew0sg"]
+font_names = PackedStringArray("", "Fafo Sans")
+font_weight = 700
+
+[sub_resource type="SystemFont" id="SystemFont_honhi"]
+font_names = PackedStringArray("Fafo Sans")
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5fcbe")
+
+[node name="Cursor" parent="." instance=ExtResource("2_bwl3b")]
+position = Vector2(-86, 55)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.819608, 0.4, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = SubResource("SystemFont_ew0sg")
+theme_override_font_sizes/font_size = 90
+text = "TP Tea Arcade"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Play" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_a7fvk")
+texture_pressed = ExtResource("4_6qn64")
+
+[node name="PlayText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_honhi")
+theme_override_font_sizes/font_size = 40
+text = "PLAY
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_a7fvk")
+texture_pressed = ExtResource("4_6qn64")
+
+[node name="SettingsText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_honhi")
+theme_override_font_sizes/font_size = 40
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_a7fvk")
+texture_pressed = ExtResource("4_6qn64")
+
+[node name="QuitText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_honhi")
+theme_override_font_sizes/font_size = 40
+text = "QUIT
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

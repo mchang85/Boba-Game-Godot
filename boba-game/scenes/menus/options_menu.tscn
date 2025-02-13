@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://dydikqbhujsco"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_pyelt"]
+[ext_resource type="PackedScene" uid="uid://do0b21ujlf0ym" path="res://scenes/cursor.tscn" id="2_qnj1d"]
+[ext_resource type="Texture2D" uid="uid://cnxs46b6sroa6" path="res://assets/ui/button_rectangle_depth_gradient.png" id="3_kgf76"]
+[ext_resource type="Texture2D" uid="uid://c1pcrbn8my8jl" path="res://assets/ui/button_rectangle_gradient.png" id="4_neltp"]
+
+[sub_resource type="SystemFont" id="SystemFont_1sf47"]
+font_names = PackedStringArray("Fafo Sans")
+
+[node name="Options Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pyelt")
+
+[node name="Cursor" parent="." instance=ExtResource("2_qnj1d")]
+position = Vector2(-50, -57)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.819608, 0.4, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Volume" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_kgf76")
+texture_pressed = ExtResource("4_neltp")
+
+[node name="VolumeText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Volume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_1sf47")
+theme_override_font_sizes/font_size = 40
+text = "VOLUME
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_kgf76")
+texture_pressed = ExtResource("4_neltp")
+
+[node name="BackText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_1sf47")
+theme_override_font_sizes/font_size = 40
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Volume" to="." method="_on_volume_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
